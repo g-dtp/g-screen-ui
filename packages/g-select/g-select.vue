@@ -2,7 +2,8 @@
 	.g-select(@click.stop="onToggle" @mousedown.stop="stop")
 		.g-select__label
 			span.g-select__text {{value[labelKey]?value[labelKey]:placeholder}}
-			i.g-select__icon-triangle
+			svg.gs-icon.gs-icon-md-arrow-dropdown(aria-hidden="true")
+				use(xlink:href="#gs-icon-md-arrow-dropdown")
 		g-select-dropdown(v-if='open' :class="[selectClass]" @dropdown-leave="onLeave")
 			.g-option(v-if='showBack' @click="goBack")
 				span 返回
@@ -52,7 +53,7 @@
 		},
 		provide() {
 			return {
-				'select': this
+				'reference': this
 			};
 		},
 		data() {
@@ -67,9 +68,7 @@
 			window.removeEventListener("mousedown", this.closeByEvent);
 		},
 		methods: {
-			onLeave(){
-
-			},
+			onLeave(){},
 			onItem(item) {
 				this.$emit('change', item)
 				this.handleClose()
@@ -93,31 +92,3 @@
 	}
 </script>
 
-<style lang="stylus" scoped>
-	.g-select
-		display inline-block
-		position relative
-		overflow hidden
-		background-color #003173
-		cursor pointer
-		padding 0 10px
-		&__label
-			font-size 0
-			height 35px
-			line-height 35px
-		&__text
-			display inline-block
-			color #52B8DF
-			font-size 14px
-			margin-right 10px
-			min-width 70px
-
-		&__icon-triangle
-			display inline-block
-			width: 0;
-			height: 0;
-			border-bottom: 6px solid #52B8DF;
-			border-left: 4px solid transparent;
-			border-right: 4px solid transparent;
-			border-top: none
-</style>
