@@ -1,0 +1,16 @@
+.g-toggle-button
+	background-color $background-color
+	font-size $font-size
+	color $color
+	display flex
+	cursor pointer
+	align-items center
+	height $toggle-button-height
+	line-height 1em
+	padding  0 10px
+.g-toggle-button__left
+	transition: all .5s cubic-bezier(.5,0,.1,1)
+	&__close
+		transform rotate(0deg)
+	&__open
+		transform rotate(180deg)
