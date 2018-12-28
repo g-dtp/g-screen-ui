@@ -3,7 +3,7 @@
 		slot(name="left")
 		slot(name="label")
 			span {{text}}
-		.g-toggle-button__left(:class="[classname]")
+		.g-toggle-button__left.g-transition_toggle(:class="[classname]")
 			slot(name="right")
 				svg.gs-icon.gs-icon-md-arrow-dropdown(aria-hidden="true")
 					use(xlink:href="#gs-icon-md-arrow-dropdown")
@@ -29,7 +29,7 @@
 		},
 		computed: {
 			classname() {
-				return this.state ? 'g-toggle-button__left__open' : 'g-toggle-button__left__close'
+				return this.state ? 'g-transition_toggle__open' : 'g-transition_toggle__close'
 			}
 		},
 		data() {
