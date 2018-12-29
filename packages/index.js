@@ -4,10 +4,13 @@ import GPopover from './g-popover'
 import GSelect from './g-select'
 import GSelectTree from './g-select-tree'
 
+import GToggleButton from './g-toggle-button'
+
 import GDialog from './g-dialog'
 import GTable from './g-table'
 
 export {
+	GToggleButton,
 	GFloatBall,
 	GPopup,
 	GPopover,

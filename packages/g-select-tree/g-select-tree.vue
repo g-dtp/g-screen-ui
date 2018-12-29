@@ -2,8 +2,8 @@
 	.g-select-tree(@click.stop="onToggle" @mousedown.stop="stop")
 		.g-select-tree__label
 			span.g-select-tree__text {{value[labelKey]?value[labelKey]:placeholder}}
-			svg.gs-icon.gs-icon-md-arrow-dropdown(aria-hidden="true")
-				use(xlink:href="#gs-icon-md-arrow-dropdown")
+			svg.gs-icon.gs-icon-md-arrow-dropdown.g-transition_toggle(aria-hidden="true" :class="[classname]")
+				use(xlink:href="#gs-icon-ios-arrow-down")
 		dropdown(v-if='open' :class="[selectClass]" @dropdown-leave="onLeave" )
 			tree-item(v-for="item in data" :key="item[valueKey]" :option="item" :label="labelKey" )
 </template>
@@ -45,6 +45,11 @@
 				default: false
 			}
 		},
+		computed: {
+			classname() {
+				return this.open ? 'g-transition_toggle__open' : 'g-transition_toggle__close'
+			}
+		},
 		provide() {
 			return {
 				'reference': this
@@ -65,6 +70,7 @@
 			},
 			onClickOption(option){
 				this.$emit('change', option)
+				this.handleClose()
 			},
 			stop(){}
 		}
