@@ -11,18 +11,24 @@
 						li(v-for='item in 6') {{item}}
 		.row
 			g-select-tree(:data="tree" v-model="value")
+		g-float-ball(:data="menu")
 </template>
 
 <script>
-	import {GSelect, GPopover, GToggleButton, GSelectTree} from 'packages/index'
+	import {GSelect, GPopover, GToggleButton, GSelectTree, GFloatBall} from 'packages/index'
 	export default {
 		name: "index",
-		components:{GPopover, GSelect, GToggleButton, GSelectTree},
+		components:{GPopover, GSelect, GToggleButton, GSelectTree, GFloatBall},
 		data(){
 			return{
 				open: false,
 				city: '',
 				value: '',
+				menu:[
+					{icon:''},
+					{icon:''},
+					{icon:''}
+				],
 				list: [
 					{label: '杭州', value: '111101'},
 					{label: '上海', value: '111102'},

@@ -1,6 +1,6 @@
 <template lang='pug'>
 	transition(@after-enter="onAfterEnter" :duration="150" @before-leave="onBeforeLeave")
-		.g-floot-ball-item(:style="style" @mousedown.stop="onDown" @mouseup.stop="onUp" @click.stop="onItem")
+		.g-float-ball__item(:style="style" @mousedown.stop="onDown" @mouseup.stop="onUp" @click.stop="onItem")
 			i.iconfont(:class="[item.icon]")
 
 </template>
@@ -60,19 +60,3 @@
 		}
 	}
 </script>
-<style lang="stylus">
-	.v-leave-to
-		transform translate(0px, 0px)
-		opacity: 0
-</style>
-<style lang="stylus" scoped>
-	.g-floot-ball-item
-		position absolute
-		width 120%
-		height 120%
-		border-radius 50%
-		background rgba(0, 0, 0, 1)
-		transform-origin 50% 50%
-		transition all .15s ease-out
-		opacity 0
-</style>

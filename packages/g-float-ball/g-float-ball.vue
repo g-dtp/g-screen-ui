@@ -1,14 +1,14 @@
 <template lang='pug'>
 	.g-float-ball(@mousedown.stop="onStart" :class="{active:active || open}" @click="onOpen")
 		.g-float-ball__content
-			g-floot-ball-item(v-for="(item,index) in data" :key="index" :index="index" :item="item" :gap="gap" @click.native.stop="onItem(item, $event)" v-if='open')
+			g-float-ball-item(v-for="(item,index) in data" :key="index" :index="index" :item="item" :gap="gap" @click.native.stop="onItem(item, $event)" v-if='open')
 </template>
 
 <script>
-	import GFlootBallItem from './g-floot-ball-item'
+	import GFloatBallItem from './g-floot-ball-item'
 	export default {
 		name: "g-float-ball",
-		components: {GFlootBallItem},
+		components: {GFloatBallItem},
 		props: {
 			size: {
 				default:50
@@ -46,15 +46,15 @@
 					if(this._timer) clearTimeout(this._timer)
 					this._timer = setTimeout(()=> {
 						this.open = false
-					}, 3000)
+					}, 300000)
 				}
 			},
 			onStart(e) {
 				this.active = true
 				this.move = false
 				let el  = this.$el
-				let maxW = document.body.clientWidth
-				let maxH = document.body.clientHeight
+				let maxW = document.documentElement.clientWidth
+				let maxH = document.documentElement.clientHeight
 				let disx = e.pageX - el.offsetLeft;
 				let disy = e.pageY - el.offsetTop;
 
@@ -76,8 +76,8 @@
 					}else if(dy > maxH - el.clientHeight){
 						dy =  maxH - el.clientHeight
 					}
-					el.style.left = dx/100 + 'px';
-					el.style.top = dy/100 + 'px';
+					el.style.left = dx + 'px';
+					el.style.top = dy + 'px';
 				}.bind(this)
 				document.onmouseup = function () {
 					this.active = false
@@ -92,28 +92,3 @@
 		}
 	}
 </script>
-
-<style lang="stylus" scoped>
-	.g-float-ball
-		position fixed
-		cursor pointer
-		top 50%
-		left 50%
-		width 50px
-		height 50px
-		border-radius 50px
-		background rgba(0,0,0,0.8)
-		box-shadow 0 0 5px rgba(0,0,0,.5)
-		box-sizing border-box
-		padding 8px
-		opacity .3
-		&.active
-			opacity .6
-		.g-float-ball__content
-			box-sizing border-box
-			border 2px solid #ffffff
-			width 100%
-			height 100%
-			border-radius 50%
-			position relative
-</style>
