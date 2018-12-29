@@ -7,7 +7,9 @@
 			:key="index"
 			:index="index"
 			:item="item"
-			:gap="gap",
+			:gap="gap"
+			:size='size'
+			:startDeg='startDeg'
 			:direction='direction'
 			@click.native.stop="onItem(item, $event)"
 			v-if='open')
@@ -21,9 +23,6 @@
 		name: "g-float-ball",
 		components: {GFloatBallItem},
 		props: {
-			size: {
-				default: 50
-			},
 			data: {
 				default: function () {
 					return []
@@ -38,7 +37,8 @@
 				active: false,
 				open: false,
 				move: false,
-				direction:1
+				direction:1,
+				size: 0
 			}
 		},
 		beforeCreate() {
@@ -46,16 +46,21 @@
 				x: 0,
 				y: 0,
 			}
-			this._deg = [-Math.PI / 2, Math.PI / 2]
 			this._timer = null
 		},
 		computed: {
 			gap() {
-				return Math.PI / (this.data.length - 1)
+				let num = this.data.length
+				return Math.PI*(num/5) / (num - 1)
+			},
+			startDeg(){
+				let num = this.data.length
+				return - Math.PI  / 2
 			}
 		},
 		mounted() {
 			this.resetPosition()
+			this.size = this.$el.clientWidth
 		},
 		created() {
 
@@ -74,7 +79,7 @@
 					if (this._timer) clearTimeout(this._timer)
 					this._timer = setTimeout(() => {
 						this.open = false
-					}, 300000)
+					}, 5000)
 				}
 			},
 			addEvents() {

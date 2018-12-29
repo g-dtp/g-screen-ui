@@ -30,7 +30,7 @@
 				default: 0
 			},
 			startDeg: {
-				default: -Math.PI / 2
+				default: -Math.PI / 2 - Math.PI/6
 			}
 		},
 		data() {
@@ -40,8 +40,9 @@
 		},
 		computed: {
 			endPoint() {
+				let radius = 2 * this.size
 				let deg = this.startDeg + this.gap * this.index * this.direction
-				return [Math.cos(deg) * this.radius, Math.sin(deg) * this.radius]
+				return [Math.cos(deg) * radius, Math.sin(deg) * radius]
 			}
 		},
 		methods: {

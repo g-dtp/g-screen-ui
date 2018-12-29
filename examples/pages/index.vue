@@ -27,7 +27,9 @@
 				menu:[
 					{icon:''},
 					{icon:''},
-					{icon:''}
+					{icon:''},
+					{icon:''},
+					{icon:''},
 				],
 				list: [
 					{label: '杭州', value: '111101'},
