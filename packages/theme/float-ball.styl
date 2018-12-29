@@ -17,6 +17,14 @@
 		position relative
 		height 100%
 		width 100%
+		display flex
+		align-items center
+		justify-content center
+		.g-float-ball__close
+			flex none
+			font-size 40px
+			font-weight 700
+			color #fff
 		.g-float-ball__item
 				position absolute
 				width $--float-ball__item-size
@@ -26,3 +34,10 @@
 				transform-origin 50% 50%
 				transition all .15s ease-out
 				opacity 0
+
+.g-float-ball-force
+
+	&__left
+		left 0
+	&__right
+		right 0
