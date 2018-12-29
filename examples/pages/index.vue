@@ -3,7 +3,7 @@
 		.row
 			g-select(@change="onChange" v-model="city" :data="list" )
 		.row
-			g-popover(trigger="event" :show='open')
+			g-popover(trigger="event" :show='open' :autoClose="false")
 				.button(slot='reference')
 					g-toggle-button(text="服务站积分排行" v-model='open')
 				.warp(slot="popper")

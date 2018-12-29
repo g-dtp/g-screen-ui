@@ -23,7 +23,9 @@
 		},
 		mounted() {
 			this.createWrapper()
-			this.setPosition()
+			this.$nextTick(()=>{
+				this.setPosition()
+			})
 		},
 		beforeDestroy() {
 			this.$emit('beforeDestroy')
@@ -31,7 +33,6 @@
 		destroyed() {
 			this.$emit('destroyed')
 			PopupManager.getInstance().close(this._uid)
-
 		},
 		methods: {
 			createWrapper() {

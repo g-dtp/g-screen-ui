@@ -1,7 +1,7 @@
 <template lang='pug'>
 	span.g-popover(@click="onToggle" @mousedown.stop="stop")
 		slot(name="reference")
-		g-popover-wrapper(v-if="open" :content="content")
+		g-popover-wrapper(v-if="open" :content="content" :style="{maxWidth:maxWidth+'px'}")
 			slot(name="popper")
 
 </template>
@@ -31,6 +31,9 @@
 				type: String,
 				default: 'bottom'
 			},
+			maxWidth:{
+				default:600
+			}
 		},
 		provide() {
 			return {
