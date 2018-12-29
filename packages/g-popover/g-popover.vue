@@ -65,10 +65,10 @@
 				let vm = this
 				this.timer = setTimeout(() => {
 					vm.open = false
+					vm.$emit('auto-close')
 				}, 3000)
 			},
-			stop() {
-			}
+			stop() {}
 		}
 	}
 </script>

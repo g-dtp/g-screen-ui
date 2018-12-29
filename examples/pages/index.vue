@@ -5,7 +5,7 @@
 		.row
 			g-popover(trigger="event" :show='open')
 				.button(slot='reference')
-					g-toggle-button(text="服务站排名" v-model='open')
+					g-toggle-button(text="服务站积分排行" v-model='open')
 				.warp(slot="popper")
 					ul
 						li(v-for='item in 6') {{item}}
