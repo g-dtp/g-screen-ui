@@ -33,28 +33,31 @@
 				default: -Math.PI / 2
 			}
 		},
-		data(){
+		data() {
 			return {
 				style: {}
 			}
 		},
 		computed: {
 			endPoint() {
-				let deg = this.startDeg + this.gap * this.index
+				let deg = this.startDeg + this.gap * this.index * this.direction
 				return [Math.cos(deg) * this.radius, Math.sin(deg) * this.radius]
 			}
 		},
 		methods: {
-			onDown () {},
-			onUp () {},
-			onItem () {},
-			onAfterEnter () {
+			onDown() {
+			},
+			onUp() {
+			},
+			onItem() {
+			},
+			onAfterEnter() {
 				this.style = {
 					transform: `translate(${this.endPoint[0]}px, ${this.endPoint[1]}px)`,
 					opacity: 1
 				}
 			},
-			onBeforeLeave (el) {
+			onBeforeLeave(el) {
 				el.style = `transition all .15s ease-in;transform:translate(0px, 0px);opacity:0;`
 			}
 		}

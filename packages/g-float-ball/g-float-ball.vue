@@ -7,7 +7,8 @@
 			:key="index"
 			:index="index"
 			:item="item"
-			:gap="gap"
+			:gap="gap",
+			:direction='direction'
 			@click.native.stop="onItem(item, $event)"
 			v-if='open')
 
@@ -36,7 +37,8 @@
 			return {
 				active: false,
 				open: false,
-				move: false
+				move: false,
+				direction:1
 			}
 		},
 		beforeCreate() {
@@ -53,7 +55,7 @@
 			}
 		},
 		mounted() {
-
+			this.resetPosition()
 		},
 		created() {
 
@@ -61,6 +63,12 @@
 		methods: {
 			onOpen() {
 				if (this.move) return
+				if(this.$el.offsetLeft < document.documentElement.clientWidth/2){
+					this.direction = 1
+				}else{
+					this.direction = -1
+				}
+
 				this.open = !this.open
 				if (this.open) {
 					if (this._timer) clearTimeout(this._timer)
@@ -116,7 +124,7 @@
 				let left = this.$el.offsetLeft
 				let t = 'transition: all .5s cubic-bezier(.5,0,.1,1);'
 				let top = this.$el.offsetTop
-				if (left > 0 && left < document.documentElement.clientWidth / 2) {
+				if (left >= 0 && left < document.documentElement.clientWidth / 2) {
 					left = 0
 				} else {
 					left = document.documentElement.clientWidth - this.$el.clientWidth
