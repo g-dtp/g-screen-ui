@@ -1,7 +1,8 @@
 <template lang='pug'>
 	transition(@after-enter="onAfterEnter" :duration="150" @before-leave="onBeforeLeave")
 		.g-float-ball__item(:style="style" @mousedown.stop="onDown" @mouseup.stop="onUp" @click.stop="onItem")
-			i.iconfont(:class="[item.icon]")
+			svg.gs-icon.g-float-ball__icon(aria-hidden="true" :class="[item.icon]")
+				use(:href="`#${item.icon}`")
 
 </template>
 

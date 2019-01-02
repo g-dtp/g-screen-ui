@@ -11,8 +11,10 @@
 	box-sizing border-box
 	opacity .3
 	z-index 99999
+
 	&.active
 		opacity .6
+
 	.g-float-ball__content
 		position relative
 		height 100%
@@ -26,18 +28,25 @@
 			font-weight 700
 			color #fff
 		.g-float-ball__item
-				position absolute
-				width $--float-ball__item-size
-				height $--float-ball__item-size
-				border-radius 50%
-				background rgba(0, 0, 0, 1)
-				transform-origin 50% 50%
-				transition all .15s ease-out
-				opacity 0
+			position absolute
+			display flex
+			align-items center
+			justify-content center
+			color rgba(255,255,255, .8)
+			width $--float-ball__item-size
+			height $--float-ball__item-size
+			border-radius 50%
+			background rgba(0, 0, 0, 1)
+			transform-origin 50% 50%
+			transition all .15s ease-out
+			opacity 0
+		.g-float-ball__icon
+			font-size 28px
 
 .g-float-ball-force
 
 	&__left
 		left 0
+
 	&__right
 		right 0

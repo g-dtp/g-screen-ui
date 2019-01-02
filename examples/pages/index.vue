@@ -25,10 +25,10 @@
 				city: '',
 				value: '',
 				menu:[
-					{icon:''},
-					{icon:''},
-					{icon:''},
-					{icon:''},
+					{icon:'gs-icon-md-unlock'},
+					{icon:'gs-icon-md-arrow-round-back'},
+					{icon:'gs-icon-md-arrow-round-forwa'},
+					{icon:'gs-icon-ios-apps'},
 					{icon:''},
 				],
 				list: [

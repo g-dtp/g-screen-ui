@@ -1,8 +1,10 @@
 <template lang='pug'>
 	.g-float-ball(@mousedown.stop="onStart" :class="{active:active || open}" @click="onOpen")
 		.g-float-ball__content
-			svg.gs-icon.g-float-ball__close(aria-hidden="true")
+			svg.gs-icon.g-float-ball__close(aria-hidden="true" v-if="!open")
 				use(xlink:href="#gs-icon-ios-radio-button-off")
+			svg.gs-icon.g-float-ball__close(aria-hidden="true" v-if="open")
+				use(xlink:href="#gs-icon-guanbi1")
 			g-float-ball-item(v-for="(item,index) in data"
 			:key="index"
 			:index="index"
@@ -79,7 +81,7 @@
 					if (this._timer) clearTimeout(this._timer)
 					this._timer = setTimeout(() => {
 						this.open = false
-					}, 5000)
+					}, 500000)
 				}
 			},
 			addEvents() {
