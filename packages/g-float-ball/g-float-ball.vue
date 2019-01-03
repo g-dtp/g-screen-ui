@@ -81,7 +81,7 @@
 					if (this._timer) clearTimeout(this._timer)
 					this._timer = setTimeout(() => {
 						this.open = false
-					}, 500000)
+					}, 5000)
 				}
 			},
 			addEvents() {
@@ -147,6 +147,7 @@
 				e.stopPropagation()
 				e.preventDefault()
 				this.$emit('command', item)
+				this.open = false
 			}
 		}
 	}
