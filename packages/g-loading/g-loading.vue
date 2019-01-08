@@ -1,7 +1,7 @@
 <template lang="pug">
   .g-loading__contain(v-if="loading")
     component(:is="lType")
-    .g-loading__text {{text}}
+    .g-loading__text(v-if="text") {{text}}
 </template>
 
 <script>
