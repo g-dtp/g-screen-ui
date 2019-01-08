@@ -1,0 +1,52 @@
+.g-float-ball
+	position fixed
+	cursor pointer
+	top 50%
+	left 50%
+	width $--float-ball-size
+	height $--float-ball-size
+	border-radius $--float-ball-size
+	background $--float-ball-background
+	box-shadow $--float-ball-box-shadow
+	box-sizing border-box
+	opacity .3
+	z-index 99999
+
+	&.active
+		opacity .6
+
+	.g-float-ball__content
+		position relative
+		height 100%
+		width 100%
+		display flex
+		align-items center
+		justify-content center
+		.g-float-ball__close
+			flex none
+			font-size 40px
+			font-weight 700
+			color #fff
+		.g-float-ball__item
+			position absolute
+			display flex
+			align-items center
+			justify-content center
+			color rgba(255,255,255, .8)
+			width $--float-ball__item-size
+			height $--float-ball__item-size
+			border-radius 50%
+			background rgba(0, 0, 0, .6)
+			transform-origin 50% 50%
+			transition all .15s ease-out
+			opacity 0
+		.g-float-ball__icon
+			font-size 28px
+
+.g-float-ball-force
+
+	&__left
+		left 0
+
+	&__right
+		right 0

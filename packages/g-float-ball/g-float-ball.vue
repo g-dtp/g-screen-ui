@@ -1,119 +1,154 @@
 <template lang='pug'>
 	.g-float-ball(@mousedown.stop="onStart" :class="{active:active || open}" @click="onOpen")
 		.g-float-ball__content
-			g-floot-ball-item(v-for="(item,index) in data" :key="index" :index="index" :item="item" :gap="gap" @click.native.stop="onItem(item, $event)" v-if='open')
+			svg.gs-icon.g-float-ball__close(aria-hidden="true" v-if="!open")
+				use(xlink:href="#gs-icon-ios-radio-button-off")
+			svg.gs-icon.g-float-ball__close(aria-hidden="true" v-if="open")
+				use(xlink:href="#gs-icon-guanbi1")
+			g-float-ball-item(v-for="(item,index) in data"
+			:key="index"
+			:index="index"
+			:item="item"
+			:gap="gap"
+			:size='size'
+			:startDeg='startDeg'
+			:direction='direction'
+			@click.native.stop="onItem(item, $event)"
+			v-if='open')
+
 </template>
 
 <script>
-	import GFlootBallItem from './g-floot-ball-item'
+	import GFloatBallItem from './g-floot-ball-item'
+
 	export default {
 		name: "g-float-ball",
-		components: {GFlootBallItem},
+		components: {GFloatBallItem},
 		props: {
-			size: {
-				default:50
-			},
 			data: {
 				default: function () {
 					return []
 				}
+			},
+			paddingGap: {
+				default: 100
 			}
 		},
 		data() {
 			return {
 				active: false,
-				open:false,
-				move:false
+				open: false,
+				move: false,
+				direction:1,
+				size: 0
 			}
 		},
 		beforeCreate() {
-			this._deg = [-Math.PI / 2, Math.PI / 2]
+			this._dp = {
+				x: 0,
+				y: 0,
+			}
 			this._timer = null
 		},
 		computed: {
 			gap() {
-				return Math.PI/(this.data.length-1)
+				let num = this.data.length
+				return Math.PI*(num/5) / (num - 1)
+			},
+			startDeg(){
+				let num = this.data.length
+				return - Math.PI  / 2
 			}
 		},
 		mounted() {
+			this.resetPosition()
+			this.size = this.$el.clientWidth
+		},
+		created() {
 
 		},
 		methods: {
-			onOpen () {
-				if(this.move) return
+			onOpen() {
+				if (this.move) return
+				if(this.$el.offsetLeft < document.documentElement.clientWidth/2){
+					this.direction = 1
+				}else{
+					this.direction = -1
+				}
+
 				this.open = !this.open
-				if(this.open){
-					if(this._timer) clearTimeout(this._timer)
-					this._timer = setTimeout(()=> {
+				if (this.open) {
+					if (this._timer) clearTimeout(this._timer)
+					this._timer = setTimeout(() => {
 						this.open = false
-					}, 3000)
+					}, 5000)
 				}
 			},
+			addEvents() {
+				document.addEventListener('mousemove', this.onMove, true)
+				document.addEventListener('mouseup', this.onEnd, true)
+			},
 			onStart(e) {
+				e.preventDefault()
 				this.active = true
 				this.move = false
-				let el  = this.$el
-				let maxW = document.body.clientWidth
-				let maxH = document.body.clientHeight
-				let disx = e.pageX - el.offsetLeft;
-				let disy = e.pageY - el.offsetTop;
-
-				document.onmousemove = function (e) {
-					if(this.open) return
-					this.active = true
-					this.move = true
-					e.stopPropagation()
-					e.preventDefault()
-					let dx = e.pageX - disx
-					let dy = e.pageY - disy
-					if(dx < 0){
-						dx = 0
-					}else if(dx > maxW - el.clientWidth){
-						dx =  maxW - el.clientWidth
-					}
-					if(dy < 0){
-						dy  = 0
-					}else if(dy > maxH - el.clientHeight){
-						dy =  maxH - el.clientHeight
-					}
-					el.style.left = dx/100 + 'px';
-					el.style.top = dy/100 + 'px';
-				}.bind(this)
-				document.onmouseup = function () {
-					this.active = false
-					document.onmousemove = document.onmouseup = null;
-				}.bind(this)
+				this._dp.x = e.pageX - this.$el.offsetLeft
+				this._dp.y = e.pageY - this.$el.offsetTop
+				this.$el.style.transition = ''
+				this.addEvents()
 			},
-			onItem (item, e) {
+			onMove(e) {
+				if (this.open) return
+				this.active = true
+				this.move = true
+				e.preventDefault()
+				let el = this.$el
+				let maxW = document.documentElement.clientWidth
+				let maxH = document.documentElement.clientHeight
+				let dx = e.pageX - this._dp.x
+				let dy = e.pageY - this._dp.y
+				if (dx < 0) {
+					dx = 0
+				} else if (dx > maxW - el.clientWidth) {
+					dx = maxW - el.clientWidth
+				}
+				if (dy < 0) {
+					dy = 0
+				} else if (dy > maxH - el.clientHeight) {
+					dy = maxH - el.clientHeight
+				}
+				el.style.left = dx + 'px';
+				el.style.top = dy + 'px';
+
+			},
+			onEnd(e) {
+				this.active = false
+				this.resetPosition()
+				document.removeEventListener('mousemove', this.onMove, true)
+				document.removeEventListener('mouseup', this.onEnd, true)
+			},
+			resetPosition() {
+				let left = this.$el.offsetLeft
+				let t = 'transition: all .5s cubic-bezier(.5,0,.1,1);'
+				let top = this.$el.offsetTop
+				if (left >= 0 && left < document.documentElement.clientWidth / 2) {
+					left = 0
+				} else {
+					left = document.documentElement.clientWidth - this.$el.clientWidth
+				}
+				if (top < this.paddingGap) {
+					top = this.paddingGap
+				} else if (top > document.documentElement.clientHeight - this.paddingGap) {
+					top = document.documentElement.clientHeight - this.paddingGap
+				}
+				this.$el.style = `${t};left:${left}px;top:${top}px`
+			},
+			onItem(item, e) {
 				e.stopPropagation()
 				e.preventDefault()
 				this.$emit('command', item)
+				this.open = false
 			}
 		}
 	}
 </script>
-
-<style lang="stylus" scoped>
-	.g-float-ball
-		position fixed
-		cursor pointer
-		top 50%
-		left 50%
-		width 50px
-		height 50px
-		border-radius 50px
-		background rgba(0,0,0,0.8)
-		box-shadow 0 0 5px rgba(0,0,0,.5)
-		box-sizing border-box
-		padding 8px
-		opacity .3
-		&.active
-			opacity .6
-		.g-float-ball__content
-			box-sizing border-box
-			border 2px solid #ffffff
-			width 100%
-			height 100%
-			border-radius 50%
-			position relative
-</style>
