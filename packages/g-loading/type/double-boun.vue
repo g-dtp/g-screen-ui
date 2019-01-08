@@ -1,8 +1,8 @@
 <template lang="pug">
   section
-    .sk-double-bounce
-      .sk-child.sk-double-bounce-1
-      .sk-child.sk-double-bounce-2
+    .g-double-bounce
+      .g-child.g-double-bounce-1
+      .g-child.g-double-bounce-2
 </template>
 
 <script>

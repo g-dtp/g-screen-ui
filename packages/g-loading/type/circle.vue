@@ -1,18 +1,18 @@
 <template lang="pug">
 section
-  .sk-circle-bounce
-    .sk-child.sk-circle-1
-    .sk-child.sk-circle-2
-    .sk-child.sk-circle-3
-    .sk-child.sk-circle-4
-    .sk-child.sk-circle-5
-    .sk-child.sk-circle-6
-    .sk-child.sk-circle-7
-    .sk-child.sk-circle-8
-    .sk-child.sk-circle-9
-    .sk-child.sk-circle-10
-    .sk-child.sk-circle-11
-    .sk-child.sk-circle-12
+  .g-circle-bounce
+    .g-child.g-circle-1
+    .g-child.g-circle-2
+    .g-child.g-circle-3
+    .g-child.g-circle-4
+    .g-child.g-circle-5
+    .g-child.g-circle-6
+    .g-child.g-circle-7
+    .g-child.g-circle-8
+    .g-child.g-circle-9
+    .g-child.g-circle-10
+    .g-child.g-circle-11
+    .g-child.g-circle-12
 </template>
 
 <script>
