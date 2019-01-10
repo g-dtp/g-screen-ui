@@ -12,8 +12,6 @@
     .row
       g-select-tree(:data="tree" v-model="value")
     g-float-ball(:data="menu")
-    g-loading(:type="'circles'" :loading="true")
-    g-loading(:type="'wave'" :loading="true" :text="'cccc'")
 </template>
 
 <script>
@@ -34,10 +32,10 @@
 					{icon:''},
 				],
 				list: [
-					{label: '����', value: '111101'},
-					{label: '�Ϻ�', value: '111102'},
-					{label: '�人', value: '111103'},
-					{label: '�Ͼ�', value: '111104'},
+					{label: '选项1', value: '111101'},
+					{label: '选项2', value: '111102'},
+					{label: '选项3', value: '111103'},
+					{label: '选项4', value: '111104'},
 				],
 				tree:[
 					{label:'����1', value:'1'},

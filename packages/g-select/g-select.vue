@@ -7,7 +7,11 @@
 		g-select-dropdown(v-if='open' :class="[selectClass]" @dropdown-leave="onLeave")
 			.g-option(v-if='showBack' @click="goBack")
 				span 返回
-			g-option(v-for="item in data" :key="item[valueKey]" @click.stop.native="onItem(item)" :option="item" :label="labelKey" :class="{current:item == value}")
+			g-option.g-select-dropdown__g-option(v-for="item in data" :key="item[valueKey]"
+			@click.stop.native="onItem(item)"
+			:option="item"
+			:label="labelKey"
+			:class="{'current':item == value}")
 </template>
 
 <script>
@@ -70,6 +74,7 @@
 		methods: {
 			onLeave(){},
 			onItem(item) {
+				if(this.value == item) return
 				this.$emit('change', item)
 				this.handleClose()
 			},
