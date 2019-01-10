@@ -28,9 +28,10 @@ export default {
     this.uid = new Date().getTime()
   },
   mounted () {
-    let options = document.getElementById(`g-loading__${this.uid}`)
-    console.log(options.parentNode)
-    options.parentNode.style.position = 'relative'
+    // let options = document.getElementById(`g-loading__${this.uid}`)
+    // console.log(options.parentNode)
+    // options.parentNode.style.position = 'relative'
+    this.$el.parentElement.style.position = 'relative'
   }
 }
 </script>
