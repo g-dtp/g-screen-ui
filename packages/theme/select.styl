@@ -7,12 +7,14 @@
 	background-color $background-color
 	cursor pointer
 	padding 0 10px
+
 	&__label
 		font-size 0
 		height 35px
 		line-height 35px
 		display flex
 		align-items center
+
 	&__text
 		flex auto
 		display inline-block
@@ -20,6 +22,7 @@
 		font-size $font-size
 		margin-right 10px
 		min-width 70px
+
 	.gs-icon-md-arrow-dropdown
 		flex none
 		color $color
@@ -37,13 +40,14 @@
 	margin-top 5px
 	box-sizing border-box
 	overflow-y auto
-	>>> .g-option
-		font-size $font-size
-		line-height 1
-		cursor pointer
-		height 30px
-		padding 0 10px
-		&:hover
-			background-color rgba(0, 22, 56, .8)
-		&.current
-			background-color rgba(0, 22, 56, .8)
+
+.g-select-dropdown__g-option
+	font-size $font-size
+	line-height 30px
+	cursor pointer
+	height 30px
+	padding 0 10px
+	&:hover
+		background-color $--select--hover--color
+	&.current
+		background-color $--select--current--color
