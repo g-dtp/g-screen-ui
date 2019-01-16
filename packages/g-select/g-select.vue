@@ -2,7 +2,7 @@
 	.g-select(@click.stop="onToggle" @mousedown.stop="stop")
 		.g-select__label
 			span.g-select__text {{value[labelKey]?value[labelKey]:placeholder}}
-			svg.gs-icon.gs-icon-md-arrow-dropdown(aria-hidden="true")
+			svg.gs-icon.gs-icon-md-arrow-dropdown.g-select__label__icon(aria-hidden="true")
 				use(xlink:href="#gs-icon-md-arrow-dropdown")
 		g-select-dropdown(v-if='open' :class="[selectClass]" @dropdown-leave="onLeave")
 			.g-option(v-if='showBack' @click="goBack")
