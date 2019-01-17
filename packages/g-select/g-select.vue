@@ -6,7 +6,7 @@
 				use(xlink:href="#gs-icon-md-arrow-dropdown")
 		g-select-dropdown(v-if='open' :class="[selectClass]" @dropdown-leave="onLeave")
 			.g-option(v-if='showBack' @click="goBack")
-				span 返回
+				span {{backLabel}}
 			g-option.g-select-dropdown__g-option(v-for="item in data" :key="item[valueKey]"
 			@click.stop.native="onItem(item)"
 			:option="item"
@@ -28,6 +28,9 @@
 		props: {
 			selectClass: {
 				default:''
+			},
+			backLabel:{
+				default:'返回'
 			},
 			showBack: {
 				default:false
