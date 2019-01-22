@@ -1,5 +1,5 @@
 <template lang='pug'>
-	.g-float-ball(@mousedown.stop="onStart"
+	.g-float-ball(
 	@touchstart.stop.prevent='onStart'
 	:class="{active:active || open}" @click="onOpen" style="touch-action:none")
 		.g-float-ball__content
@@ -93,8 +93,8 @@
 				}
 			},
 			addEvents() {
-				document.addEventListener('mousemove', this.onMove, true)
-				document.addEventListener('mouseup', this.onEnd, true)
+				// document.addEventListener('mousemove', this.onMove, true)
+				// document.addEventListener('mouseup', this.onEnd, true)
 				document.addEventListener('touchmove', this.onMove, {passive: false})
 				document.addEventListener('touchend', this.onEnd, {passive: false})
 			},
@@ -148,8 +148,8 @@
 			onEnd(e) {
 				this.active = false
 				this.resetPosition()
-				document.removeEventListener('mousemove', this.onMove, true)
-				document.removeEventListener('mouseup', this.onEnd, true)
+				// document.removeEventListener('mousemove', this.onMove, true)
+				// document.removeEventListener('mouseup', this.onEnd, true)
 				document.removeEventListener('touchmove', this.onMove, true)
 				document.removeEventListener('touchend', this.onEnd, true)
 			},
