@@ -1,6 +1,6 @@
 {
   "name": "g-screen-ui",
-  "version": "1.0.7",
+  "version": "1.0.16",
   "description": "A Vue.js project",
   "author": "xiaosong.jiang <xiaosong.jiang@geely.com>",
   "main": "packages/index.js",
@@ -11,6 +11,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "alloyfinger": "^0.1.16",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },

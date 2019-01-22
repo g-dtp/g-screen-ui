@@ -2,12 +2,16 @@
 	.g-select(@click.stop="onToggle" @mousedown.stop="stop")
 		.g-select__label
 			span.g-select__text {{value[labelKey]?value[labelKey]:placeholder}}
-			svg.gs-icon.gs-icon-md-arrow-dropdown(aria-hidden="true")
+			svg.gs-icon.gs-icon-md-arrow-dropdown.g-select__label__icon(aria-hidden="true")
 				use(xlink:href="#gs-icon-md-arrow-dropdown")
 		g-select-dropdown(v-if='open' :class="[selectClass]" @dropdown-leave="onLeave")
 			.g-option(v-if='showBack' @click="goBack")
-				span 返回
-			g-option(v-for="item in data" :key="item[valueKey]" @click.stop.native="onItem(item)" :option="item" :label="labelKey" :class="{current:item == value}")
+				span {{backLabel}}
+			g-option.g-select-dropdown__g-option(v-for="item in data" :key="item[valueKey]"
+			@click.stop.native="onItem(item)"
+			:option="item"
+			:label="labelKey"
+			:class="{'current':item == value}")
 </template>
 
 <script>
@@ -24,6 +28,9 @@
 		props: {
 			selectClass: {
 				default:''
+			},
+			backLabel:{
+				default:'返回'
 			},
 			showBack: {
 				default:false
@@ -70,6 +77,7 @@
 		methods: {
 			onLeave(){},
 			onItem(item) {
+				if(this.value == item) return
 				this.$emit('change', item)
 				this.handleClose()
 			},

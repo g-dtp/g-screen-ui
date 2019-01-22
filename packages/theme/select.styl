@@ -6,7 +6,8 @@
 	overflow hidden
 	background-color $background-color
 	cursor pointer
-	padding 0 10px
+	padding 0 5px 0 10px
+
 	&__label
 		font-size 0
 		height 35px
@@ -15,35 +16,38 @@
 		align-items center
 	&__text
 		flex auto
-		display inline-block
 		color $color
+		text-align left
 		font-size $font-size
-		margin-right 10px
 		min-width 70px
+
 	.gs-icon-md-arrow-dropdown
 		flex none
 		color $color
+		font-size $--select--label--icon-size
 
 .g-select-dropdown
 	background-color $background-color
 	color $color
 	box-shadow $box-shadow
 	font-size $font-size
-	max-width 300px
-	min-width 200px
-	max-height 300px
+	max-width $--select-max-width
+	min-width $--select-min-width
+	max-height $--select-max-height
 	overflow-y auto
 	border-radius 3px
 	margin-top 5px
 	box-sizing border-box
 	overflow-y auto
-	>>> .g-option
-		font-size $font-size
-		line-height 1
-		cursor pointer
-		height 30px
-		padding 0 10px
-		&:hover
-			background-color rgba(0, 22, 56, .8)
-		&.current
-			background-color rgba(0, 22, 56, .8)
+
+.g-select-dropdown__g-option
+	font-size $-select-dropdown__g-option__fontSize
+	line-height 30px
+	cursor pointer
+	height 30px
+	white-space nowrap
+	padding 0 10px
+	&:hover
+		background-color $--select--hover--color
+	&.current
+		background-color $--select--current--color
