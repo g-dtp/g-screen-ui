@@ -1,6 +1,6 @@
 {
   "name": "g-screen-ui",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "A Vue.js project",
   "author": "xiaosong.jiang <xiaosong.jiang@geely.com>",
   "main": "packages/index.js",
