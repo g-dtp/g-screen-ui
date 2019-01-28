@@ -48,6 +48,7 @@
 				this.classname = classname
 			},
 			makePosition() {
+				if(!this.$el) return
 				let popover = this.$el.getBoundingClientRect()
 				let rect = this.reference.$el.getBoundingClientRect()
 				let view = document.documentElement.getBoundingClientRect()

@@ -4,7 +4,7 @@
 			span.g-select__text {{value[labelKey]?value[labelKey]:placeholder}}
 			svg.gs-icon.gs-icon-md-arrow-dropdown.g-select__label__icon(aria-hidden="true")
 				use(xlink:href="#gs-icon-md-arrow-dropdown")
-		g-select-dropdown(v-if='open' :class="[selectClass]" @dropdown-leave="onLeave")
+		g-select-dropdown(v-if='open' :class="[selectClass]" @dropdown-leave="onLeave" @close="closeByEvent")
 			.g-option(v-if='showBack' @click="goBack")
 				span {{backLabel}}
 			g-option.g-select-dropdown__g-option(v-for="item in data" :key="item[valueKey]"
@@ -69,10 +69,10 @@
 			}
 		},
 		mounted() {
-			window.addEventListener("mousedown", this.closeByEvent);
+			window.addEventListener("mousedown", this.closeByEvent, false);
 		},
 		beforeDestroy() {
-			window.removeEventListener("mousedown", this.closeByEvent);
+			window.removeEventListener("mousedown", this.closeByEvent, false);
 		},
 		methods: {
 			onLeave(){},
