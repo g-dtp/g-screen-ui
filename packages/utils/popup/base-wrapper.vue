@@ -54,10 +54,10 @@
 				let view = document.documentElement.getBoundingClientRect()
 				let h = 'left'
 				let v = 'bottom'
-				h = rect.x + popover.width >= view.width ? 'right' : 'left'
-				v = rect.y < popover.height >= view.height ? 'top' : 'bottom'
-				let x = h === 'right' ? (rect.x + rect.width) - popover.width : rect.x
-				let y = v === 'top' ? (rect.y + rect.height) - popover.height : rect.y + rect.height
+				h = rect.left + popover.width >= view.width ? 'right' : 'left'
+				v = rect.top < popover.height >= view.height ? 'top' : 'bottom'
+				let x = h === 'right' ? (rect.left + rect.width) - popover.width : rect.left
+				let y = v === 'top' ? (rect.top + rect.height) - popover.height : rect.top + rect.height
 				return {
 					classname: `popover-${h}-${v}`,
 					left: x + 'px',
