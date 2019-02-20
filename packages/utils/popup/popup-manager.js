@@ -15,6 +15,13 @@ class PopupManager {
 		return instance
 	}
 
+	closeOther(){
+		Object.values(this.pool).forEach(vm => {
+			console.log(/show/, vm.show)
+			vm.$emit('close')
+		})
+	}
+
 	init(options) {
 		const {
 			uid,
@@ -22,6 +29,7 @@ class PopupManager {
 			components,
 			wrapper
 		} = options
+		this.closeOther()
 		let vm = this.pool[uid]
 		if (vm) {
 			if (vm.show) return
@@ -46,7 +54,6 @@ class PopupManager {
 		this.pool[uid] = vm
 		// 插入
 		vm.$el.parentElement === null && target.appendChild(vm.$el);
-
 	}
 
 	/*
@@ -57,12 +64,14 @@ class PopupManager {
 			popper,
 			uid
 		} = options
+		this.closeOther()
 		let vm = this.pool[uid]
 		if (vm) return
 		this.pool[uid] = popper
 	}
 
 	popup(options) {
+		debugger
 		this.init(options)
 	}
 
