@@ -11,6 +11,14 @@ import GTable from './g-table'
 
 import GLoading from './g-loading'
 
+import GMessage from './g-message'
+const install = function(Vue, opts = {}) {
+	Vue.prototype.$gmessage = GMessage
+}
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue)
+}
+
 export {
 	GToggleButton,
 	GFloatBall,
@@ -20,5 +28,7 @@ export {
 	GSelectTree,
 	GDialog,
 	GTable,
-	GLoading
+	GLoading,
+	install,
+	GMessage 
 }
