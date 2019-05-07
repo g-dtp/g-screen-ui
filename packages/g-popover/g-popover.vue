@@ -1,5 +1,5 @@
 <template lang='pug'>
-	span.g-popover(@click="onToggle" @mousedown.stop="stop")
+	span.g-popover(@click.stop="onToggle" @mousedown.stop="stop")
 		slot(name="reference")
 		g-popover-wrapper(v-if="open" :content="content" :style="{maxWidth:maxWidth+'px'}")
 			slot(name="popper")
@@ -55,6 +55,12 @@
 			}
 		},
 		computed: {},
+		mounted() {
+			window.addEventListener("click", this.closeByEvent, false);
+		},
+		beforeDestroy() {
+			window.removeEventListener("click", this.closeByEvent, false);
+		},
 		methods: {
 			onToggle() {
 				if (this.trigger === 'event') return
@@ -71,7 +77,10 @@
 					vm.$emit('auto-close')
 				}, 3000)
 			},
-			stop() {}
+			stop() {},
+			closeByEvent() {
+				this.open = false
+			}
 		}
 	}
 </script>

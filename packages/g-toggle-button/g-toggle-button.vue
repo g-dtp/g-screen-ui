@@ -37,9 +37,19 @@
 				state: this.toggle
 			}
 		},
+		mounted() {
+			window.addEventListener("click", this.closeByEvent, false);
+		},
+		beforeDestroy() {
+			window.removeEventListener("click", this.closeByEvent, false);
+		},
 		methods: {
 			onClick() {
 				this.state = !this.state
+				this.$emit('change', this.state)
+			},
+			closeByEvent() {
+				this.state = false
 				this.$emit('change', this.state)
 			}
 		}
