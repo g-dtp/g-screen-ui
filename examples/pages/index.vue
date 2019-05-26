@@ -18,7 +18,6 @@
 
 <script>
 	import {GSelect, GPopover, GToggleButton, GSelectTree, GFloatBall, GLoading} from 'packages/index'
-
 	export default {
 		name: "index",
 		components: {GPopover, GSelect, GToggleButton, GSelectTree, GFloatBall, GLoading},
@@ -72,6 +71,26 @@
 					{label: '����4', value: '4'},
 				]
 			}
+		},
+		mounted () {
+			this.$gmessage({
+				message: 'xxxxxxxxxxxxx',
+				type: 'info',
+				duration: 2000,
+				shadow: false,
+				position: 'top'
+			})
+			this.$gmessage({
+				message: 'xxx',
+				type: 'warn',
+				duration: 4000
+			})
+			this.$gmessage({
+				message: 'xxx',
+				type: 'success',
+				duration: 50000,
+				position: 'bottom'
+			})
 		},
 		methods: {
 			onChange() {
