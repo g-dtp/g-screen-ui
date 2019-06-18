@@ -10,7 +10,7 @@ import GDialog from './g-dialog'
 import GTable from './g-table'
 
 import GLoading from './g-loading'
-
+import GTooltip from './g-tooltip'
 export {
 	GToggleButton,
 	GFloatBall,
@@ -20,5 +20,6 @@ export {
 	GSelectTree,
 	GDialog,
 	GTable,
-	GLoading
+	GLoading,
+	GTooltip
 }
